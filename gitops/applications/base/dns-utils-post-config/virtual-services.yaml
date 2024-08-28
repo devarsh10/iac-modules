@@ -57,3 +57,27 @@ spec:
             host: rook-ceph-rgw-ceph-objectstore
             port:
               number: 80
+
+---
+# NOTE: only enable for debugging purposes
+# TODO: disable in production
+
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: rook-ceph-dashboard
+  namespace: ${ARGOCD_ENV_rook_ceph_namespace}
+spec:
+  gateways:
+    - ${ARGOCD_ENV_rook_ceph_bucket_config_istio_gateway_namespace}/${ARGOCD_ENV_rook_ceph_bucket_config_istio_wildcard_gateway_name}
+  hosts:
+    - "rook-ceph-dashboard.${ARGOCD_ENV_rook_ceph_bucket_config_dns_subdomain}"
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: rook-ceph-mgr-dashboard
+            port:
+              number: 8443
