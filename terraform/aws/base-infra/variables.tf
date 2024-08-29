@@ -42,13 +42,13 @@ variable "create_private_zone" {
   description = "Whether to create private zone in route53. true or false, default true"
 }
 variable "manage_parent_domain" {
-  default     = false
+  default     = true
   type        = bool
   description = "whether parent domain should be created and managed here"
 }
 
 variable "manage_parent_domain_ns" {
-  default     = false
+  default     = true
   type        = bool
   description = "whether ns record should be created for parent domain in that parent's zone that should already exist"
 }
