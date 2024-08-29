@@ -62,7 +62,7 @@ variable "az_count" {
 variable "route53_zone_force_destroy" {
   description = "destroy public zone on destroy of env"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "bastion_ami" {
@@ -80,7 +80,7 @@ variable "block_size" {
 
 variable "enable_netmaker" {
   type    = bool
-  default = false
+  default = true
 }
 
 variable "netmaker_vpc_cidr" {
@@ -89,7 +89,7 @@ variable "netmaker_vpc_cidr" {
 }
 
 variable "create_haproxy_dns_record" {
-  default     = false
+  default     = true
   type        = bool
   description = "whether to create public dns record for private ip of bastion for haproxy"
 }
